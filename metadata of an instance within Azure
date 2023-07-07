@@ -1,0 +1,8 @@
+$metadataUrl = "http://169.254.169.254/metadata/instance?api-version=2021-09-01"
+
+$client = New-Object System.Net.WebClient
+$client.Headers.Add("Metadata", "true")
+$response = $client.DownloadString($metadataUrl)
+$metadata = ConvertFrom-Json $response
+$jsonOutput = ConvertTo-Json $metadata -Depth 100
+Write-Output $jsonOutput
